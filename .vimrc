@@ -42,6 +42,11 @@ Plugin 'vimprj'
 Plugin 'indexer.tar.gz'
 Plugin 'twilight'
 Plugin 'cscope.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'iamcco/mathjax-support-for-mkdp'
+Plugin 'iamcco/markdown-preview.vim'
+Plugin 'morhetz/gruvbox'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -93,7 +98,9 @@ set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 
 " Set color scheme that I like.
 "colorscheme desert 
-colorscheme twilight
+colorscheme gruvbox
+set background=dark
+set t_Co=256
 
 " Status line
 set laststatus=2
@@ -342,20 +349,29 @@ nnoremap <leader>fa :call cscope#findInteractive(expand('<cword>'))<CR>
 nnoremap <leader>l :call ToggleLocationList()<CR>
 
 " s: Find this C symbol
-nnoremap  <leader>fs :call cscope#find('s', expand('<cword>'))<CR>
+nnoremap  <leader>fs :call cscope#find('s', expand('<cword>'))<CR> 
 " g: Find this definition
-nnoremap  <leader>fg :call cscope#find('g', expand('<cword>'))<CR>
+nnoremap  <leader>fg :call cscope#find('g', expand('<cword>'))<CR> 
 " d: Find functions called by this function
-nnoremap  <leader>fd :call cscope#find('d', expand('<cword>'))<CR>
+nnoremap  <leader>fd :call cscope#find('d', expand('<cword>'))<CR> 
 " c: Find functions calling this function
-nnoremap  <leader>fc :call cscope#find('c', expand('<cword>'))<CR>
+nnoremap  <leader>fc :call cscope#find('c', expand('<cword>'))<CR> 
 " t: Find this text string
-nnoremap  <leader>ft :call cscope#find('t', expand('<cword>'))<CR>
+nnoremap  <leader>ft :call cscope#find('t', expand('<cword>'))<CR> 
 " e: Find this egrep pattern
 nnoremap  <leader>fe :call cscope#find('e', expand('<cword>'))<CR>
 " f: Find this file
-nnoremap  <leader>ff :call cscope#find('f', expand('<cword>'))<CR>
+nnoremap  <leader>ff :call cscope#find('f', expand('<cword>'))<CR> 
 " i: Find files #including this file
-nnoremap  <leader>fi :call cscope#find('i', expand('<cword>'))<CR>
+nnoremap  <leader>fi :call cscope#find('i', expand('<cword>'))<CR> 
 
 let g:cscope_silent=1
+
+"
+"markdown-preview.vim
+"
+" for normal mode
+nmap <silent> <leader>mp :MarkdownPreview <CR>
+
+" for normal mode
+nmap <silent> <leader>ms :MarkdownPreviewStop<CR>
