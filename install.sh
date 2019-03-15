@@ -2,11 +2,20 @@
 PWD=$(pwd)
 
 #install .vimrc
-ln -s ${PWD}/.vimrc ~/.vimrc
+if [ ! -e ~/.vimrc ]; then
+    ln -s ${PWD}/.vimrc ~/.vimrc
+fi
 
 #install Vundle
-mkdir ~/.vim/bundle
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle
+if [ ! -e ~/.vim/bundle/Vundle.vim ];then
+    mkdir -p ~/.vim/bundle/Vundle.vim
+else
+    (cd ~/.vim/bundle/Vundle.vim/; git pull origin master)
+fi
 
 #PluginInstall
 vim -c "PluginInstall"
+
+#config YoucompleteMe
+#YoucompeleteMe will cost some time, Be patient!
+(cd ~/.vim/bundle/YoucompleteMe/; ./install.py --clang-completer)

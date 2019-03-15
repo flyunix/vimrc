@@ -26,12 +26,13 @@ Plugin 'VundleVim/Vundle.vim'
 " different version somewhere else.
 "Plugin 'ascenator/L9', {'name': 'newL9'}
 
-Plugin 'Valloric/YouCompeleteMe'
+"Plugin 'Valloric/YouCompeleteMe'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-utils/vim-man'
 Plugin 'taglist.vim'
 Plugin 'minibufexpl.vim'
 Plugin 'The-NERD-tree'
-Plugin 'Powerline'
+Plugin 'powerline/powerline'
 Plugin 'fugitive.vim'
 Plugin 'Auto-Pairs'
 Plugin 'tComment'
