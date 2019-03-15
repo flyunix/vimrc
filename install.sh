@@ -1,5 +1,12 @@
 #!/bin/bash
+PWD=$(pwd)
 
-ls -s ./.vimrc ~/.vimrc
+#install .vimrc
+ln -s ${PWD}/.vimrc ~/.vimrc
 
-vim -s "PluginInstall"
+#install Vundle
+mkdir ~/.vim/bundle
+cp -af ${PWD}/Vundle.vim ~/.vim/bundle
+
+#PluginInstall
+vim -c "PluginInstall"
