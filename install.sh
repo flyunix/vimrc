@@ -19,4 +19,6 @@ vim -c "PluginInstall"
 
 #config YoucompleteMe
 #YoucompeleteMe will cost some time, Be patient!
-(cd ~/.vim/bundle/YoucompleteMe/; ./install.py --clang-completer)
+#sudo apt install cmake;
+#sudo apt install python2.7-dev
+(cd ~/.vim/bundle/YouCompleteMe/; ./install.py --clang-completer)
