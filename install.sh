@@ -9,6 +9,7 @@ fi
 #install Vundle
 if [ ! -e ~/.vim/bundle/Vundle.vim ];then
     mkdir -p ~/.vim/bundle/Vundle.vim
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 else
     (cd ~/.vim/bundle/Vundle.vim/; git pull origin master)
 fi
@@ -18,4 +19,4 @@ vim -c "PluginInstall"
 
 #config YoucompleteMe
 #YoucompeleteMe will cost some time, Be patient!
-(cd ~/.vim/bundle/YoucompleteMe/; ./install.py --clang-completer)
+(cd ~/.vim/bundle/YouCompleteMe/; ./install.py --clang-completer)

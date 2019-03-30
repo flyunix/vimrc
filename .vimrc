@@ -26,8 +26,7 @@ Plugin 'VundleVim/Vundle.vim'
 " different version somewhere else.
 "Plugin 'ascenator/L9', {'name': 'newL9'}
 
-"Plugin 'Valloric/YouCompeleteMe'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-utils/vim-man'
 Plugin 'taglist.vim'
 Plugin 'minibufexpl.vim'
@@ -48,6 +47,7 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'iamcco/mathjax-support-for-mkdp'
 Plugin 'iamcco/markdown-preview.vim'
 Plugin 'morhetz/gruvbox'
+Plugin 'srcexpl'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -204,9 +204,9 @@ let g:miniBufExplModSelTarget = 1
 let g:miniBufExplMoreThanOne=0 
 
 "YCM configs
-set runtimepath+=~/.vim/bundle/YouCompleteMe
+"set runtimepath+=~/.vim/bundle/YouCompleteMe
 " 寻找全局配置文件
-let g:ycm_global_ycm_extra_conf='/home/qihua/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+"let g:ycm_global_ycm_extra_conf='/home/qihua/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 
 " 开启 YCM 标签补全引擎,使用ctags生成的tags文件
 let g:ycm_collect_identifiers_from_tags_files=1
@@ -279,9 +279,11 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 "autocmd VimEnter * NERDTree
 " 更多的命令，参见:help NERDTree
 " end of NERD tree config
+nmap <F9> :NERDTreeToggle<CR>
 
 "
 "Tag List
+nmap <F7> :TlistToggle<CR>
 "只显示当前文件的tags
 let Tlist_Show_One_File=1    
 "设置taglist宽度
@@ -289,7 +291,7 @@ let Tlist_Show_One_File=1
 "tagList窗口是最后一个窗口，则退出Vim
 let Tlist_Exit_OnlyWindow=1 
 "在Vim窗口右侧显示taglist窗口
-"let Tlist_Use_Right_Window=1 
+let Tlist_Use_Right_Window=1 
 "autocmd VimEnter * TlistToggle
 let Tlist_Auto_Open=0
 "set ctags
@@ -299,21 +301,21 @@ let Tlist_Ctags_Cmd="/usr/bin/ctags"
 
 "winManager 
 "
-let g:NERDTree_title='NERD Tree'
-let g:winManagerWindowLayout='NERDTree|TagList'
+"let g:NERDTree_title='NERD Tree'
+"let g:winManagerWindowLayout='NERDTree|TagList'
 ""设置winmanager的宽度，默认为25
-let g:winManagerWidth = 30
-function! NERDTree_Start()
-    exec 'NERDTree'
-endfunction
+"let g:winManagerWidth = 30
+"function! NERDTree_Start()
+"    exec 'NERDTree'
+"endfunction
 
-function! NERDTree_IsValid()
-    return 1
-endfunction
+"function! NERDTree_IsValid()
+"    return 1
+"endfunction
 
 " 绑定F2到winmanager
-nmap <silent> <F2> :WMToggle<CR>
-let g:AutoOpenWinManager=0
+"nmap <silent> <F2> :WMToggle<CR>
+"let g:AutoOpenWinManager=0
 
 " indexer                                                       
 " 设置indexer 调用 ctags 的参数                                 
@@ -324,15 +326,14 @@ let g:indexer_ctagsCommandLineOptions="--c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v 
 "
 " cscope setting
 if has("cscope")
-  set csprg=/usr/bin/cscope
-  set csto=1
-  set cst
-  set nocsverb
+  set csprg=/usr/bin/cscope "cscope位置
+  set csto=1                "cscope DB search first
+  set cst                   "cscope DB tag DB search
   " add any database in current directory
   if filereadable("cscope.out")
       cs add cscope.out
   endif
-  set csverb
+  set csverb                "verbose off"
 endif
 
 "nmap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>
@@ -376,3 +377,16 @@ nmap <silent> <leader>mp :MarkdownPreview <CR>
 
 " for normal mode
 nmap <silent> <leader>ms :MarkdownPreviewStop<CR>
+
+"Source Explorer环境设置
+nmap <F8> :SrcExplToggle<CR>
+nmap <C-H> <C-W>h                 "向左侧窗口移动"
+nmap <C-J> <C-W>j                 "向右侧窗口移动"
+nmap <C-K> <C-W>k                 "向上端窗口移动"
+nmap <C-L> <C-W>l                 "向下端窗口移动"
+
+let g:SrcExpl_winHeight = 8       "指定SrcExpl Windows高度"
+let g:SrcExpl_refreshTime = 100   "refreshing time = 100ms"
+let g:SrcExpl_jumpKey = "<ENTER>"  "跳转(jump)至相应定义definition"
+let g:SrcExpl_gobackKey = "<SPACE>" "back"
+let g:SrcExpl_isUpdateTags = 0     "tag file update = off"
