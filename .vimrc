@@ -26,7 +26,7 @@ Plugin 'VundleVim/Vundle.vim'
 " different version somewhere else.
 "Plugin 'ascenator/L9', {'name': 'newL9'}
 
-"Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-utils/vim-man'
 Plugin 'taglist.vim'
 Plugin 'minibufexpl.vim'
@@ -93,13 +93,13 @@ set scrolloff=999
 " Use UTF-8.
 set encoding=utf-8
 set langmenu=zh_CN.UTF-8
-language message zh_CN.UTF-8
+"language message zh_CN.UTF-8
 
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 
 " Set color scheme that I like.
-"colorscheme desert 
-colorscheme gruvbox
+colorscheme desert 
+"colorscheme gruvbox
 set background=dark
 set t_Co=256
 
@@ -206,7 +206,7 @@ let g:miniBufExplMoreThanOne=0
 "YCM configs
 "set runtimepath+=~/.vim/bundle/YouCompleteMe
 " 寻找全局配置文件
-"let g:ycm_global_ycm_extra_conf='/home/qihua/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 
 " 开启 YCM 标签补全引擎,使用ctags生成的tags文件
 let g:ycm_collect_identifiers_from_tags_files=1
