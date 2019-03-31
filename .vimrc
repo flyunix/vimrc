@@ -157,7 +157,7 @@ filetype plugin on
 nmap lb 0
 nmap le $
 "定义快捷键前缀
-let mapleader=";"
+let mapleader=";" 
 "定义快捷键关闭当前分割窗口
 nmap <leader>q q:<CR>
 "定义快捷键保存当前窗口内容
@@ -298,6 +298,7 @@ let Tlist_Auto_Open=0
 let Tlist_Ctags_Cmd="/usr/bin/ctags"
 "end of Tag List
 
+set tags=/home/lhl/develops/linux/kenerl/armLinux/linux-2.6.30.4/tags
 
 "winManager 
 "
@@ -330,20 +331,21 @@ if has("cscope")
   set csto=1                "cscope DB search first
   set cst                   "cscope DB tag DB search
   " add any database in current directory
-  if filereadable("cscope.out")
-      cs add cscope.out
-  endif
+  "if filereadable("cscope.out")
+  "    cs add cscope.out
+  "endif
+  cs add /home/lhl/develops/linux/kenerl/armLinux/linux-2.6.30.4/cscope.out
   set csverb                "verbose off"
 endif
 
-"nmap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-"nmap <leader>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-"nmap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-"nmap <leader>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-"nmap <leader>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-"nmap <leader>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-"nmap <leader>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-"nmap <leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <leader>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 "cscope.vim
 "
