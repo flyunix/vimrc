@@ -39,7 +39,6 @@ Plugin 'winmanager'
 Plugin 'vim-scripts/khaki.vim'
 Plugin 'DfrankUtil'                                             
 Plugin 'vimprj'                                                 
-Plugin 'indexer.tar.gz'
 Plugin 'twilight'
 Plugin 'cscope.vim'
 Plugin 'godlygeek/tabular'
@@ -48,6 +47,8 @@ Plugin 'iamcco/mathjax-support-for-mkdp'
 Plugin 'iamcco/markdown-preview.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'srcexpl'
+Plugin 'w0rp/ale'
+Plugin 'ludovicchabant/vim-gutentags'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -318,12 +319,6 @@ set tags=/home/lhl/develops/linux/kenerl/armLinux/linux-2.6.30.4/tags
 "nmap <silent> <F2> :WMToggle<CR>
 "let g:AutoOpenWinManager=0
 
-" indexer                                                       
-" 设置indexer 调用 ctags 的参数                                 
-" 默认 --c++-kinds=+p+l，重新设置为 --c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v
-" 默认 --fields=+iaS 不满足 YCM 要求，需改为 --fields=+iaSl                                       
-let g:indexer_ctagsCommandLineOptions="--c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v --fields=+iaSl --extra=+q"
-
 "
 " cscope setting
 if has("cscope")
@@ -392,3 +387,43 @@ let g:SrcExpl_refreshTime = 100   "refreshing time = 100ms"
 let g:SrcExpl_jumpKey = "<ENTER>"  "跳转(jump)至相应定义definition"
 let g:SrcExpl_gobackKey = "<SPACE>" "back"
 let g:SrcExpl_isUpdateTags = 0     "tag file update = off"
+
+"ale自动语法检测
+"ale "始终开启标志列
+let g:ale_sign_column_always = 1
+let g:ale_set_highlights = 0
+"自定义error和warning图标
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚡'
+"在vim自带的状态栏中整合ale
+let g:ale_statusline_format = ['✗ %d', '⚡ %d', '✔ OK']
+"显示Linter名称,出错或警告等相关信息
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
+let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
+let g:ale_c_cppcheck_options = ''
+let g:ale_cpp_cppcheck_options = ''
+"普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
+nmap sp <Plug>(ale_previous_wrap)
+nmap sn <Plug>(ale_next_wrap)
+
+"vim-gutentags
+"gutentags搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归 "
+let g:gutentags_project_root = ['.root', '.svn', '.git', '.project', '.hg']
+
+" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录 "
+"let s:vim_tags = expand('~/.cache/tags')
+"let g:gutentags_cache_dir = s:vim_tags
+" 检测 ~/.cache/tags 不存在就新建 "
+"if !isdirectory(s:vim_tags)
+"   silent! call mkdir(s:vim_tags, 'p')
+"endif
+
+"配置ctgas的参数
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
